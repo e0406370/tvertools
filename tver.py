@@ -1,9 +1,5 @@
 """
-  1. Execute the following commands in a terminal:
-    pip install selenium
-    pip install beautifulsoup4
-    
-  2. tver.txt must be in the same directory as tver.py
+    Extracts links from a series that is currently streaming on TVer into a text file, using Selenium and Beautiful Soup.
 """
 
 import re, sys, time
