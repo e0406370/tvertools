@@ -20,7 +20,7 @@ TVER_FILE = "tver.txt"
 def make_webdriver():
 
     opt = Options()
-    # opt.add_argument("--headless")  # activates the browser in the background
+    opt.add_argument("--headless")  # activates the browser in the background
 
     driver = webdriver.Chrome(options=opt)
     return driver
@@ -30,6 +30,12 @@ def wait_element_visible(driver, by, locator, timeout=10):
 
     wait = WebDriverWait(driver, timeout)
     wait.until(EC.visibility_of_element_located((by, locator)))
+    
+    
+def wait_element_invisible(driver, by, locator, timeout=10):
+    
+    wait = WebDriverWait(driver, timeout)
+    wait.until(EC.invisibility_of_element_located((by, locator)))
 
 
 def scrape_tver(link: str):
@@ -37,7 +43,8 @@ def scrape_tver(link: str):
     driver = make_webdriver()
     driver.get(link)
 
-    wait_element_visible(driver, By.CSS_SELECTOR, "[class^='episode-live-list-column_episodeList']")
+    wait_element_invisible(driver, By.CSS_SELECTOR, "[class^='loading_box']")
+    # wait_element_visible(driver, By.CSS_SELECTOR, "[class^='episode-live-list-column_episodeList']")
 
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
