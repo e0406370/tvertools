@@ -8,13 +8,20 @@ from helpers import *
 from bs4 import BeautifulSoup
 
 
-def scrape_tver(link: str):
+def render_tver(driver, link):
 
-    driver = make_webdriver()
     driver.get(link)
 
-    wait_element_invisible(driver, load_icon)
-    # wait_element_visible(driver, episode_list)
+    wait_element_invisible(driver, Locators.LOAD_ICON)
+
+    if is_element_visible(driver, Locators.EPISODE_LIST_EMPTY):
+        print(f"Error: The selected series is not currently available")
+        sys.exit(1)
+
+    wait_element_visible(driver, Locators.EPISODE_LIST)
+
+
+def scrape_tver(driver):
 
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
@@ -39,4 +46,6 @@ if __name__ == "__main__":
 
     link = sys.argv[1]
 
-    scrape_tver(link)
+    with make_webdriver() as driver:
+        render_tver(driver, link)
+        scrape_tver(driver)

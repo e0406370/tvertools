@@ -6,5 +6,6 @@ class ClassNames:
     LOAD_ICON = "loading_box"
     SERIES_TITLE = "series-main_title"
 
+    EPISODE_LIST_EMPTY = "episode-live-list-column_empty"
     EPISODE_LIST = "episode-live-list-column_episodeList"
     EPISODE_ROW = "episode-row_container"
