@@ -46,6 +46,6 @@ if __name__ == "__main__":
 
     link = sys.argv[1]
 
-    driver = make_webdriver()
-    render_tver(driver, link)
-    scrape_tver(driver)
+    with make_webdriver() as driver:
+        render_tver(driver, link)
+        scrape_tver(driver)
