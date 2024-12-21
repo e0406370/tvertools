@@ -7,9 +7,6 @@ import re, sys
 from helpers import *
 from bs4 import BeautifulSoup
 
-TVER_BASE = "https://tver.jp"
-TVER_FILE = "tver.txt"
-
 
 def scrape_tver(link: str):
 
@@ -22,10 +19,10 @@ def scrape_tver(link: str):
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    print(f"Title: {soup.select('[class^=series-main_title]')[0].get_text()}")
+    print(f"Title: {soup.select(f'[class^={ClassNames.SERIES_TITLE}]')[0].get_text()}")
     links = [
         TVER_BASE + (link.get("href"))
-        for link in soup.find_all("a", class_=re.compile("episode-row_container"))
+        for link in soup.find_all("a", class_=re.compile(ClassNames.EPISODE_ROW))
     ]
     print(f"Links ({len(links)}): {links}")
 
