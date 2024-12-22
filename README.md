@@ -1,13 +1,13 @@
 ## Requirements:
 
 - **`selenium`**
-  - `install via pip`
+  - Install using `pip install selenium`.
 
 - **`beautifulsoup4`**
-  - `install via pip`
+  - Install using `pip install beautifulsoup4`.
 
 - **`yt-dlp`**
-  - `retrieve from github.com/yt-dlp/yt-dlp`
+  - Retrieve from github.com/yt-dlp/yt-dlp.
 
 ## Usage:
 
