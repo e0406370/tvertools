@@ -1,5 +1,5 @@
 """
-    Extracts links from a series that is currently streaming on TVer into a text file, using Selenium and Beautiful Soup.
+    Extracts links from one or more series currently streaming on TVer into a text file, using Selenium and Beautiful Soup.
 """
 
 import re, sys
@@ -33,7 +33,7 @@ def scrape_tver(driver):
     ]
     print(f"Links ({len(links)}): {links}")
 
-    with open(TVER_FILE, "w+") as output:
+    with open(TVER_FILE, "a+") as output:
         for link in links:
             output.write(f"{link}\n")
 
@@ -41,11 +41,19 @@ def scrape_tver(driver):
 if __name__ == "__main__":
 
     if len(sys.argv) < 2:
-        print("Usage: python tver.py tver.jp/series/abc123")  # must be a series that is currently streaming
+        print("Usage: python tver.py tver.jp/series/abc123 [tver.jp/series/cde456...]")  # supports single link or multiple links
         sys.exit(1)
 
-    link = sys.argv[1]
+    links = sys.argv[1:]
+    
+    with open(TVER_FILE, "w+") as output:
+        pass
 
     with make_webdriver() as driver:
-        render_tver(driver, link)
-        scrape_tver(driver)
+        for link in links:
+            print(f"\nProcessing link: {link}")
+
+            render_tver(driver, link)
+            scrape_tver(driver)
+            
+            print("\n")
