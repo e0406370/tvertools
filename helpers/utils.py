@@ -33,3 +33,8 @@ def wait_element_invisible(driver, locator, timeout=10):
 
     wait = WebDriverWait(driver, timeout)
     wait.until(EC.invisibility_of_element_located(locator))
+
+
+def css_selector_class_starts_with(class_name):
+    
+    return f"[class^='{class_name}']"

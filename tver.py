@@ -26,7 +26,7 @@ def scrape_tver(driver):
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    print(f"Title: {soup.select(f'[class^={ClassNames.SERIES_TITLE}]')[0].get_text()}")
+    print(f"Title: {soup.select(css_selector_class_starts_with(ClassNames.SERIES_TITLE))[0].get_text()}")
     links = [
         TVER_BASE + (link.get("href"))
         for link in soup.find_all("a", class_=re.compile(ClassNames.EPISODE_ROW))
