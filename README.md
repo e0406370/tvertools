@@ -7,8 +7,8 @@
   - Install using `pip install beautifulsoup4`.
 
 - **`yt-dlp`**
-  - Retrieve from [this repository](github.com/yt-dlp/yt-dlp).
-
+  - Retrieve from [this repository](https://github.com/yt-dlp/yt-dlp).
+  
 ## Usage:
 
 Assuming the CLI is in the directory containing the **`yt-dlp`** executable and **`tverbatch`** folder, execute the following command:
