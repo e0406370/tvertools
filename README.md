@@ -1,15 +1,18 @@
-Requirements:
-- `selenium`
+## Requirements:
+
+- **`selenium`**
   - `install via pip`
-  
-- `beautifulsoup4`
+  <pre>
+- **`beautifulsoup4`**
   - `install via pip`
-  
-- `yt-dlp`
+  <pre>
+- **`yt-dlp`**
   - `retrieve from github.com/yt-dlp/yt-dlp`
 
-Assuming the CLI is in the directory containing the `yt-dlp` executable and `tverbatch` folder, execute the following command:
+## Usage:
+
+Assuming the CLI is in the directory containing the **`yt-dlp`** executable and **`tverbatch`** folder, execute the following command:
 
 ```sh
-python tverbatch/tver.py tver.jp/series/abc123 && yt-dlp --write-subs -a tver.txt
+python tverbatch/tver.py tver.jp/series/abc123 [tver.jp/series/cde456...] && yt-dlp --write-subs -a tver.txt
 ```
