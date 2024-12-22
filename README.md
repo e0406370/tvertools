@@ -7,7 +7,7 @@
   - Install using `pip install beautifulsoup4`.
 
 - **`yt-dlp`**
-  - Retrieve from github.com/yt-dlp/yt-dlp.
+  - Retrieve from [this repository](github.com/yt-dlp/yt-dlp).
 
 ## Usage:
 
