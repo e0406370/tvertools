@@ -2,10 +2,10 @@
 
 - **`selenium`**
   - `install via pip`
-  <pre>
+
 - **`beautifulsoup4`**
   - `install via pip`
-  <pre>
+
 - **`yt-dlp`**
   - `retrieve from github.com/yt-dlp/yt-dlp`
 
