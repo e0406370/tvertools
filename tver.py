@@ -8,7 +8,7 @@ from helpers import *
 from bs4 import BeautifulSoup
 
 
-def render_tver(driver, link):
+def render_tver(driver, link) -> bool:
 
     driver.get(link)
 
@@ -16,12 +16,13 @@ def render_tver(driver, link):
 
     if is_element_visible(driver, Locators.EPISODE_LIST_EMPTY):
         print(f"Error: The selected series is not currently available")
-        sys.exit(1)
+        return False
 
     wait_element_visible(driver, Locators.EPISODE_LIST)
+    return True
 
 
-def scrape_tver(driver):
+def scrape_tver(driver) -> None:
 
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
@@ -53,7 +54,7 @@ if __name__ == "__main__":
         for link in links:
             print(f"\nProcessing link: {link}")
 
-            render_tver(driver, link)
-            scrape_tver(driver)
-            
-            print("\n")
+            if render_tver(driver, link):
+                scrape_tver(driver)                
+        
+        print("\n")
