@@ -3,7 +3,6 @@
 """
 
 import re, sys
-
 from helpers import *
 from bs4 import BeautifulSoup
 
@@ -29,18 +28,18 @@ def scrape_tver(driver) -> None:
 
     series_title = soup.select(css_selector_class_starts_with(ClassNames.SERIES_TITLE))[0].get_text()
     links = [
-        TVER_BASE + (link.get("href"))
+        TVER_BASE_URL + (link.get("href"))
         for link in soup.find_all("a", class_=re.compile(ClassNames.EPISODE_ROW))
     ]
-    
+
     print(f"{series_title} [{len(links)}]")
     for i in range(len(links)):
         episode_link = links[i]
         episode_broadcast_date = soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW_BROADCAST_DATE))[i].get_text()
         episode_title = soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW_TITLE))[i].get_text()
         print(f"{episode_link} | {episode_broadcast_date} | {episode_title}")
-        
-    with open(TVER_FILE, "a+") as output:
+
+    with open(TVER_BATCH_FILE, "a+") as output:
         for link in links:
             output.write(f"{link}\n")
 
@@ -51,9 +50,11 @@ if __name__ == "__main__":
         print("Usage: python tver.py tver.jp/series/abc123 [tver.jp/series/cde456...]")  # supports single link or multiple links
         sys.exit(1)
 
-    links = sys.argv[1:]
+    links = validate_links(sys.argv[1:])
+    if not links:
+        sys.exit(1)
     
-    with open(TVER_FILE, "w+") as output:
+    with open(TVER_BATCH_FILE, "w+") as output:
         pass
 
     with make_webdriver() as driver:

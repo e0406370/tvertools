@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 from helpers.utils import css_selector_class_starts_with
 
-
-TVER_BASE = "https://tver.jp"
-TVER_FILE = "tver.txt"
+TVER_VALID_URL = r'https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)'
+TVER_BASE_URL = "https://tver.jp"
+TVER_BATCH_FILE = "tver.txt"
 
 
 class ClassNames:
