@@ -2,7 +2,6 @@
     Extracts links from one or more series currently streaming on TVer into a text file, using Selenium and Beautiful Soup.
 """
 
-import re, sys
 from helpers import *
 from bs4 import BeautifulSoup
 
@@ -14,7 +13,7 @@ def render_tver(driver, link) -> bool:
     wait_element_invisible(driver, Locators.LOAD_ICON)
 
     if is_element_visible(driver, Locators.EPISODE_LIST_EMPTY):
-        print(f"Error: The selected series is currently unavailable!")
+        print(f"Error: This series is currently unavailable!")
         return False
 
     wait_element_visible(driver, Locators.EPISODE_LIST)
@@ -29,7 +28,7 @@ def scrape_tver(driver) -> None:
     series_title = soup.select(css_selector_class_starts_with(ClassNames.SERIES_TITLE))[0].get_text()
     links = [
         TVER_BASE_URL + (link.get("href"))
-        for link in soup.find_all("a", class_=re.compile(ClassNames.EPISODE_ROW))
+        for link in soup.find_all("a", class_=compile_pattern(ClassNames.EPISODE_ROW))
     ]
 
     print(f"{series_title} [{len(links)}]")
@@ -48,11 +47,11 @@ if __name__ == "__main__":
 
     if len(sys.argv) < 2:
         print("Usage: python tver.py tver.jp/series/abc123 [tver.jp/series/cde456...]")  # supports single link or multiple links
-        sys.exit(1)
+        exit_script()
 
     links = validate_links(sys.argv[1:])
     if not links:
-        sys.exit(1)
+        exit_script()
     
     with open(TVER_BATCH_FILE, "w+") as output:
         pass
@@ -64,4 +63,4 @@ if __name__ == "__main__":
             if render_tver(driver, link):
                 scrape_tver(driver)                
         
-        print("\n")
+        print(f"\nScript completed.")
