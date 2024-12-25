@@ -12,7 +12,9 @@ class ClassNames:
 
     EPISODE_LIST_EMPTY = "episode-live-list-column_empty"
     EPISODE_LIST = "episode-live-list-column_episodeList"
+    
     EPISODE_ROW = "episode-row_container"
+    EPISODE_ROW_TITLE = "episode-row_title"
 
 
 class Locators:

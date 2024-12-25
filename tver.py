@@ -15,7 +15,7 @@ def render_tver(driver, link) -> bool:
     wait_element_invisible(driver, Locators.LOAD_ICON)
 
     if is_element_visible(driver, Locators.EPISODE_LIST_EMPTY):
-        print(f"Error: The selected series is not currently available")
+        print(f"Error: The selected series is currently unavailable!")
         return False
 
     wait_element_visible(driver, Locators.EPISODE_LIST)
@@ -27,13 +27,18 @@ def scrape_tver(driver) -> None:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    print(f"Title: {soup.select(css_selector_class_starts_with(ClassNames.SERIES_TITLE))[0].get_text()}")
+    series_title = soup.select(css_selector_class_starts_with(ClassNames.SERIES_TITLE))[0].get_text()
     links = [
         TVER_BASE + (link.get("href"))
         for link in soup.find_all("a", class_=re.compile(ClassNames.EPISODE_ROW))
     ]
-    print(f"Links ({len(links)}): {links}")
-
+    
+    print(f"{series_title} [{len(links)}]")
+    for i in range(len(links)):
+        episode_title = soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW_TITLE))[i].get_text()
+        episode_link = links[i]
+        print(f"{i + 1}. {episode_link} | {episode_title}")
+        
     with open(TVER_FILE, "a+") as output:
         for link in links:
             output.write(f"{link}\n")
@@ -52,7 +57,7 @@ if __name__ == "__main__":
 
     with make_webdriver() as driver:
         for link in links:
-            print(f"\nProcessing link: {link}")
+            print(f"\nProcessing {link}...")
 
             if render_tver(driver, link):
                 scrape_tver(driver)                
