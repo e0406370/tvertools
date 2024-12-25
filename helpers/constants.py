@@ -15,6 +15,7 @@ class ClassNames:
     
     EPISODE_ROW = "episode-row_container"
     EPISODE_ROW_TITLE = "episode-row_title"
+    EPISODE_ROW_BROADCAST_DATE = "episode-row_broadcastDateLabel"
 
 
 class Locators:

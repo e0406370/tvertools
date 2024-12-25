@@ -35,9 +35,10 @@ def scrape_tver(driver) -> None:
     
     print(f"{series_title} [{len(links)}]")
     for i in range(len(links)):
-        episode_title = soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW_TITLE))[i].get_text()
         episode_link = links[i]
-        print(f"{i + 1}. {episode_link} | {episode_title}")
+        episode_broadcast_date = soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW_BROADCAST_DATE))[i].get_text()
+        episode_title = soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW_TITLE))[i].get_text()
+        print(f"{episode_link} | {episode_broadcast_date} | {episode_title}")
         
     with open(TVER_FILE, "a+") as output:
         for link in links:
