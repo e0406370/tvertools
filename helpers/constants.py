@@ -1,7 +1,4 @@
-from selenium.webdriver.common.by import By
-from helpers.utils import css_selector_class_starts_with
-
-TVER_VALID_URL = r'https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)'
+TVER_VALID_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
 TVER_BASE_URL = "https://tver.jp"
 TVER_BATCH_FILE = "tver.txt"
 
@@ -12,14 +9,7 @@ class ClassNames:
 
     EPISODE_LIST_EMPTY = "episode-live-list-column_empty"
     EPISODE_LIST = "episode-live-list-column_episodeList"
-    
+
     EPISODE_ROW = "episode-row_container"
     EPISODE_ROW_TITLE = "episode-row_title"
     EPISODE_ROW_BROADCAST_DATE = "episode-row_broadcastDateLabel"
-
-
-class Locators:
-    LOAD_ICON = (By.CSS_SELECTOR, css_selector_class_starts_with(ClassNames.LOAD_ICON))
-
-    EPISODE_LIST_EMPTY = (By.CSS_SELECTOR, css_selector_class_starts_with(ClassNames.EPISODE_LIST_EMPTY))
-    EPISODE_LIST = (By.CSS_SELECTOR, css_selector_class_starts_with(ClassNames.EPISODE_LIST))
