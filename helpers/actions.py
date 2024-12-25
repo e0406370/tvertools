@@ -1,6 +1,6 @@
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -15,12 +15,13 @@ def make_webdriver():
     return driver
 
 
-def is_element_visible(driver, locator):
+def is_element_visible(driver, locator, timeout=2):
 
     try:
-        return driver.find_element(*locator).is_displayed()
+        wait_element_visible(driver, locator, timeout)
+        return True
 
-    except NoSuchElementException:
+    except TimeoutException:
         return False
 
 

@@ -4,6 +4,11 @@ from helpers.utils import css_selector_class_starts_with
 
 
 class Locators:
+    ERROR_MODAL = (
+        By.CSS_SELECTOR,
+        css_selector_class_starts_with(ClassNames.ERROR_MODAL)
+    )
+    
     LOAD_ICON = (
         By.CSS_SELECTOR,
         css_selector_class_starts_with(ClassNames.LOAD_ICON)

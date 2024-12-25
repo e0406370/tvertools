@@ -4,6 +4,7 @@ TVER_BATCH_FILE = "tver.txt"
 
 
 class ClassNames:
+    ERROR_MODAL = "error-modal_message"
     LOAD_ICON = "loading_box"
     SERIES_TITLE = "series-main_title"
 

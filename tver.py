@@ -6,9 +6,13 @@ from helpers import *
 from bs4 import BeautifulSoup
 
 
-def render_tver(driver, link) -> bool:
+def render_tver(driver, link):
 
     driver.get(link)
+    
+    if is_element_visible(driver, Locators.ERROR_MODAL):
+        print(f"Error: The provided series ID is invalid!")
+        return False
 
     wait_element_invisible(driver, Locators.LOAD_ICON)
 
@@ -17,10 +21,11 @@ def render_tver(driver, link) -> bool:
         return False
 
     wait_element_visible(driver, Locators.EPISODE_LIST)
+    
     return True
 
 
-def scrape_tver(driver) -> None:
+def scrape_tver(driver):
 
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
@@ -58,7 +63,7 @@ if __name__ == "__main__":
 
     with make_webdriver() as driver:
         for link in links:
-            print(f"\nProcessing {link}...")
+            print(f"\nProcessing {link}")
 
             if render_tver(driver, link):
                 scrape_tver(driver)                
