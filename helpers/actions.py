@@ -9,6 +9,7 @@ def make_webdriver():
 
     opt = Options()
     opt.add_argument("--headless")  # activates the browser in the background
+    opt.add_argument('--log-level=2') # suppresses tensorflow-related messages
 
     driver = webdriver.Chrome(options=opt)
     return driver
