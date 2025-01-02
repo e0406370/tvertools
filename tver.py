@@ -32,23 +32,34 @@ def scrape_tver(driver):
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    series_title = soup.select(css_selector_class_starts_with(ClassNames.SERIES_TITLE))[0].get_text()
-    links = [
-        TVER_BASE_URL + href
-        for link in soup.find_all("a", class_=compile_pattern(ClassNames.EPISODE_ROW))
-        if (href := link.get("href")) and "episodes" in href
+    series_title = soup.select_one(css_selector_class_starts_with(ClassNames.SERIES_TITLE)).get_text()
+    episodes = [
+        Episode(
+            (
+                TVER_BASE_URL + href
+                if (href := episode_container.get("href")) and "episodes" in href
+                else ""
+            ),
+            (
+                date.get_text()
+                if (date := episode_container.select_one(css_selector_class_starts_with(ClassNames.EPISODE_ROW_BROADCAST_DATE)))
+                else ""
+            ),
+            (
+                title.get_text()
+                if (title := episode_container.select_one(css_selector_class_starts_with(ClassNames.EPISODE_ROW_TITLE)))
+                else ""
+            )
+        )
+        for episode_container in soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW))
     ]
 
-    print(f"{series_title} [{len(links)}]")
-    for i in range(len(links)):
-        episode_link = links[i]
-        episode_broadcast_date = soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW_BROADCAST_DATE))[i].get_text()
-        episode_title = soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW_TITLE))[i].get_text()
-        print(f"{episode_link} | {episode_broadcast_date} | {episode_title}")
+    print(f"{series_title} [{len(episodes)}]")
+    print("\n".join(str(epi) for epi in episodes))
 
     with open(TVER_BATCH_FILE, "a+") as output:
-        for link in links:
-            output.write(f"{link}\n")
+        for epi in episodes:
+            output.write(f"{epi.episode_link}\n")
 
 
 def download_tver():
