@@ -37,8 +37,6 @@ def scrape_tver(driver):
         Episode(
             (
                 TVER_BASE_URL + href
-                if (href := episode_container.get("href")) and "episodes" in href
-                else ""
             ),
             (
                 date.get_text()
@@ -52,6 +50,7 @@ def scrape_tver(driver):
             )
         )
         for episode_container in soup.select(css_selector_class_starts_with(ClassNames.EPISODE_ROW))
+        if (href := episode_container.get("href")) and "episodes" in href
     ]
 
     print(f"{series_title} [{len(episodes)}]")
