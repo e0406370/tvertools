@@ -4,12 +4,13 @@
 
 from helpers import *
 from bs4 import BeautifulSoup
+import yt_dlp
 
 
 def render_tver(driver, link):
 
     driver.get(link)
-    
+
     if is_element_visible(driver, Locators.ERROR_MODAL):
         print(f"Error: The provided series ID is invalid!")
         return False
@@ -21,7 +22,7 @@ def render_tver(driver, link):
         return False
 
     wait_element_visible(driver, Locators.EPISODE_LIST)
-    
+
     return True
 
 
@@ -49,16 +50,31 @@ def scrape_tver(driver):
             output.write(f"{link}\n")
 
 
+def download_tver():
+
+    with open(TVER_BATCH_FILE, "r+") as input:
+        links = input.readlines()
+
+    ydl_opts = {
+        "writesubtitles": True,
+        "outtmpl": "downloads/%(title)s.%(ext)s",
+    }
+
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        print(f"\nStarting download...")
+        ydl.download(links)
+
+
 if __name__ == "__main__":
 
     if len(sys.argv) < 2:
-        print("Usage: python tver.py tver.jp/series/abc123 [tver.jp/series/cde456...]")  # supports single link or multiple links
+        print("Usage: python tver.py https://tver.jp/series/abc123 [https://tver.jp/series/cde456...]")  # supports single link or multiple links
         exit_script()
 
     links = validate_links(sys.argv[1:])
     if not links:
         exit_script()
-    
+
     with open(TVER_BATCH_FILE, "w+") as output:
         pass
 
@@ -67,6 +83,8 @@ if __name__ == "__main__":
             print(f"\nProcessing {link}")
 
             if render_tver(driver, link):
-                scrape_tver(driver)                
-        
-        print(f"\nScript completed.")
+                scrape_tver(driver)
+
+    download_tver()
+
+    print(f"\nScript completed.")
