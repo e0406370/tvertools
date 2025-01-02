@@ -32,8 +32,9 @@ def scrape_tver(driver):
 
     series_title = soup.select(css_selector_class_starts_with(ClassNames.SERIES_TITLE))[0].get_text()
     links = [
-        TVER_BASE_URL + (link.get("href"))
+        TVER_BASE_URL + href
         for link in soup.find_all("a", class_=compile_pattern(ClassNames.EPISODE_ROW))
+        if (href := link.get("href")) and "episodes" in href
     ]
 
     print(f"{series_title} [{len(links)}]")
