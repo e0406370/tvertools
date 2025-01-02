@@ -1,5 +1,6 @@
 """
     Extracts links from one or more series currently streaming on TVer into a text file, using Selenium and Beautiful Soup.
+    Afterwards, it uses yt-dlp internally to download the episodes based on the extracted links. 
 """
 
 from helpers import *
