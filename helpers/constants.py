@@ -1,6 +1,17 @@
-TVER_VALID_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
-TVER_BASE_URL = "https://tver.jp"
-TVER_BATCH_FILE = "tver.txt"
+class Tver:
+    BATCH_FILE = "tver.txt"
+
+    BASE_URL = "https://tver.jp"
+    VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
+
+    SERIES_ID = {
+        "valid": "srtxft431v",  # 名探偵コナン
+        "invalid": "s123456789",
+        "not_airing": "sre9gy29cj",  # 家族ゲーム
+    }
+
+    def get_series_url(cls, series_id):
+        return f"{cls.BASE_URL}/series/{series_id}"
 
 
 class ClassNames:

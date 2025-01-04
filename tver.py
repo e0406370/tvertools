@@ -36,7 +36,7 @@ def scrape_tver(driver):
     episodes = [
         Episode(
             (
-                TVER_BASE_URL + href
+                Tver.BASE_URL + href
             ),
             (
                 date.get_text()
@@ -56,14 +56,14 @@ def scrape_tver(driver):
     print(f"{series_title} [{len(episodes)}]")
     print("\n".join(str(epi) for epi in episodes))
 
-    with open(TVER_BATCH_FILE, "a+") as output:
+    with open(Tver.BATCH_FILE, "a+") as output:
         for epi in episodes:
             output.write(f"{epi.episode_link}\n")
 
 
 def download_tver():
 
-    with open(TVER_BATCH_FILE, "r+") as input:
+    with open(Tver.BATCH_FILE, "r+") as input:
         links = input.readlines()
 
     ydl_opts = {
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     if not links:
         exit_script()
 
-    with open(TVER_BATCH_FILE, "w+") as output:
+    with open(Tver.BATCH_FILE, "w+") as output:
         pass
 
     with make_webdriver() as driver:

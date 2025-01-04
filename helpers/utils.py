@@ -1,5 +1,5 @@
 import re, sys
-from helpers.constants import TVER_VALID_URL
+from helpers.constants import Tver
 
 
 def validate_links(links):
@@ -7,7 +7,7 @@ def validate_links(links):
     valid_links = []
 
     for link in links:
-        if re.match(TVER_VALID_URL, link):
+        if re.match(Tver.VALID_SERIES_URL, link):
             valid_links.append(link)
 
         else:
