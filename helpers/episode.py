@@ -1,10 +1,16 @@
 class Episode:
     def __init__(self, episode_link, episode_broadcast_date, episode_title):
-
         self.episode_link = episode_link
         self.episode_broadcast_date = episode_broadcast_date
         self.episode_title = episode_title
 
     def __str__(self):
+        parts = [self.episode_link]
 
-        return f"{self.episode_link} | {self.episode_broadcast_date} | {self.episode_title}"
+        if self.episode_broadcast_date:
+            parts.append(self.episode_broadcast_date)
+            
+        if self.episode_title:
+            parts.append(self.episode_title)
+                
+        return " | ".join(parts)
