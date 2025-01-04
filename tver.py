@@ -13,13 +13,13 @@ def render_tver(driver, link):
     driver.get(link)
 
     if is_element_visible(driver, Locators.ERROR_MODAL):
-        print(f"Error: The provided series ID is invalid!")
+        print(Messages.ERROR_INVALID_SERIES_ID)
         return False
 
     wait_element_invisible(driver, Locators.LOAD_ICON)
 
     if is_element_visible(driver, Locators.EPISODE_LIST_EMPTY):
-        print(f"Error: This series is currently unavailable!")
+        print(Messages.ERROR_NOT_AIRING_SERIES)
         return False
 
     wait_element_visible(driver, Locators.EPISODE_LIST)

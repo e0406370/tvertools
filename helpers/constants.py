@@ -14,3 +14,8 @@ class ClassNames:
     EPISODE_ROW = "episode-row_container"
     EPISODE_ROW_TITLE = "episode-row_title"
     EPISODE_ROW_BROADCAST_DATE = "episode-row_broadcastDateLabel"
+
+
+class Messages:
+    ERROR_INVALID_SERIES_ID = "Error: The provided series ID is invalid!"
+    ERROR_NOT_AIRING_SERIES = "Error: This series is currently not airing!"
