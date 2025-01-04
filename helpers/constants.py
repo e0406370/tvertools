@@ -10,6 +10,7 @@ class Tver:
         "not_airing": "sre9gy29cj",  # 家族ゲーム
     }
 
+    @classmethod
     def get_series_url(cls, series_id):
         return f"{cls.BASE_URL}/series/{series_id}"
 
