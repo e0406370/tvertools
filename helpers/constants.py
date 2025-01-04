@@ -1,13 +1,13 @@
 class Tver:
     BATCH_FILE = "tver.txt"
-
     BASE_URL = "https://tver.jp"
+    
     VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
     VALID_SERIES_ID = r"sr[a-z0-9]{8}"
 
-    SERIES_ID = {
+    TEST_SERIES_ID = {
         "valid": "srtxft431v",  # 名探偵コナン
-        "invalid": "s123456789",
+        "invalid": "sr12345678",
         "not_airing": "sre9gy29cj",  # 家族ゲーム
     }
 
