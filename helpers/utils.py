@@ -9,9 +9,12 @@ def validate_links(links):
     for link in links:
         if re.match(Tver.VALID_SERIES_URL, link):
             valid_links.append(link)
+            
+        elif re.match(Tver.VALID_SERIES_ID, link):
+            valid_links.append(Tver.get_series_url(link))
 
         else:
-            print(f"Warning: Invalid URL skipped - {link}")
+            print(f"Warning: Invalid URL/ID skipped - {link}")
 
     return valid_links
 

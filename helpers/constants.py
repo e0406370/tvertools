@@ -3,6 +3,7 @@ class Tver:
 
     BASE_URL = "https://tver.jp"
     VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
+    VALID_SERIES_ID = r"sr[a-z0-9]{8}"
 
     SERIES_ID = {
         "valid": "srtxft431v",  # 名探偵コナン
