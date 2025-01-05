@@ -10,7 +10,7 @@ def shared_driver():
         yield driver
 
 
-def test_render_tver_with_valid_series(shared_driver):
+def test_render_tver_valid_series(shared_driver):
 
     series_url = Tver.get_series_url(Tver.TEST_SERIES_ID["valid"])
     render_status = render_tver(shared_driver, series_url)
@@ -18,7 +18,7 @@ def test_render_tver_with_valid_series(shared_driver):
     assert render_status is True, "render_tver should return True for valid series"
 
 
-def test_render_tver_with_invalid_series(shared_driver, capsys):
+def test_render_tver_invalid_series(shared_driver, capsys):
 
     series_url = Tver.get_series_url(Tver.TEST_SERIES_ID["invalid"])
     render_status = render_tver(shared_driver, series_url)
@@ -27,7 +27,7 @@ def test_render_tver_with_invalid_series(shared_driver, capsys):
     assert render_status is False, "render_tver should return False for invalid series"
 
 
-def test_render_tver_with_not_airing_series(shared_driver, capsys):
+def test_render_tver_not_airing_series(shared_driver, capsys):
 
     series_url = Tver.get_series_url(Tver.TEST_SERIES_ID["not_airing"])
     render_status = render_tver(shared_driver, series_url)
