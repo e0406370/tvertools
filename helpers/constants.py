@@ -1,12 +1,13 @@
 class Tver:
     BATCH_FILE = "tver.txt"
     BASE_URL = "https://tver.jp"
-    
+
     VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
     VALID_SERIES_ID = r"sr[a-z0-9]{8}"
 
     TEST_SERIES_ID = {
         "valid": "srtxft431v",  # 名探偵コナン
+        "valid_2": "srtsxzl3si",  # ドラえもん
         "invalid": "sr12345678",
         "not_airing": "sre9gy29cj",  # 家族ゲーム
     }
@@ -33,7 +34,7 @@ class Messages:
     WARNING_INVALID_URL_ID = "Warning: Invalid URL/ID skipped - %s"
     ERROR_INVALID_SERIES_ID = "Error: The provided series ID is invalid!"
     ERROR_NOT_AIRING_SERIES = "Error: This series is currently not airing!"
-        
+
     PROCESS_LINK = "\nProcessing %s"
     DOWNLOAD_LINK = "\nStarting download..."
 
