@@ -30,5 +30,12 @@ class ClassNames:
 
 
 class Messages:
+    WARNING_INVALID_URL_ID = "Warning: Invalid URL/ID skipped - %s"
     ERROR_INVALID_SERIES_ID = "Error: The provided series ID is invalid!"
     ERROR_NOT_AIRING_SERIES = "Error: This series is currently not airing!"
+        
+    PROCESS_LINK = "\nProcessing %s"
+    DOWNLOAD_LINK = "\nStarting download..."
+
+    SCRIPT_EXIT = "\nExiting script..."
+    SCRIPT_COMPLETE = "\nScript completed."

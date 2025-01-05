@@ -72,7 +72,7 @@ def download_tver():
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        print(f"\nStarting download...")
+        print(Messages.DOWNLOAD_LINK)
         ydl.download(links)
 
 
@@ -91,11 +91,11 @@ if __name__ == "__main__":
 
     with make_webdriver() as driver:
         for link in links:
-            print(f"\nProcessing {link}")
+            print(Messages.PROCESS_LINK % link)
 
             if render_tver(driver, link):
                 scrape_tver(driver)
 
     download_tver()
 
-    print(f"\nScript completed.")
+    print(Messages.SCRIPT_COMPLETE)

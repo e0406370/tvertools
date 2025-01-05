@@ -1,5 +1,5 @@
 import re, sys
-from helpers.constants import Tver
+from helpers.constants import Tver, Messages
 
 
 def validate_links(links):
@@ -14,7 +14,7 @@ def validate_links(links):
             valid_links.append(Tver.get_series_url(link))
 
         else:
-            print(f"Warning: Invalid URL/ID skipped - {link}")
+            print(Messages.WARNING_INVALID_URL_ID % link)
 
     return valid_links
 
@@ -31,5 +31,5 @@ def css_selector_class_starts_with(class_name):
 
 def exit_script():
 
-    print("\nExiting script...")
+    print(Messages.SCRIPT_EXIT)
     sys.exit(1)
