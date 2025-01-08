@@ -5,11 +5,23 @@ class Tver:
     VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
     VALID_SERIES_ID = r"sr[a-z0-9]{8}"
 
-    TEST_SERIES_ID = {
-        "valid": "srtxft431v",  # 名探偵コナン
-        "valid_2": "srtsxzl3si",  # ドラえもん
-        "invalid": "sr12345678",
-        "not_airing": "sre9gy29cj",  # 家族ゲーム
+    TEST_SERIES = {
+        "valid": {
+            "id": "srtxft431v", 
+            "name": "名探偵コナン"
+        },
+        "valid_2": {
+            "id": "srtsxzl3si", 
+            "name": "ドラえもん"
+        },
+        "invalid": {
+            "id": "sr12345678", 
+            "name": "invalid"
+        },
+        "not_airing": {
+            "id": "sre9gy29cj", 
+            "name": "家族ゲーム"
+        },
     }
 
     @classmethod
