@@ -2,6 +2,9 @@ class Tver:
     BATCH_FILE = "tver.txt"
     BASE_URL = "https://tver.jp"
 
+    VALID_EPISODE_URL = r"https?://(?:www\.)?tver\.jp/episodes/([a-zA-Z0-9]+)"
+    VALID_EPISODE_ID = r"ep[a-z0-9]{8}"
+
     VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
     VALID_SERIES_ID = r"sr[a-z0-9]{8}"
 
@@ -23,6 +26,10 @@ class Tver:
             "name": "家族ゲーム"
         },
     }
+    
+    @classmethod
+    def get_episode_url(cls, episode_id):
+        return f"{cls.BASE_URL}/episodes/{episode_id}"
 
     @classmethod
     def get_series_url(cls, series_id):
@@ -47,8 +54,9 @@ class Messages:
     ERROR_INVALID_SERIES_ID = "Error: The provided series ID is invalid!"
     ERROR_NOT_AIRING_SERIES = "Error: This series is currently not airing!"
 
-    PROCESS_LINK = "\nProcessing %s"
-    DOWNLOAD_LINK = "\nStarting download..."
+    PROCESS_EPISODE = "\nAdded %s to batch file"
+    PROCESS_SERIES = "\nProcessing %s"
+    PROCESS_DOWNLOAD = "\nStarting download..."
 
     SCRIPT_EXIT = "\nExiting script..."
     SCRIPT_COMPLETE = "\nScript completed."

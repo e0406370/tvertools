@@ -1,3 +1,9 @@
+class Links:
+    def __init__(self, episodes, series):
+        self.episodes = episodes
+        self.series = series
+
+
 class Episode:
     def __init__(self, episode_link, episode_broadcast_date, episode_title):
         self.episode_link = episode_link
@@ -9,8 +15,8 @@ class Episode:
 
         if self.episode_broadcast_date:
             parts.append(self.episode_broadcast_date)
-            
+
         if self.episode_title:
             parts.append(self.episode_title)
-                
+
         return " | ".join(parts)

@@ -72,29 +72,38 @@ def download_tver():
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        print(Messages.DOWNLOAD_LINK)
+        print(Messages.PROCESS_DOWNLOAD)
         ydl.download(links)
 
 
 if __name__ == "__main__":
+
+    with open(Tver.BATCH_FILE, "w+") as output:
+        pass
 
     if len(sys.argv) < 2:
         print("Usage: python tver.py https://tver.jp/series/abc123 [https://tver.jp/series/cde456 ...]")  # supports single link or multiple links
         exit_script()
 
     links = validate_links(sys.argv[1:])
-    if not links:
+
+    if not links.episodes and not links.series:
         exit_script()
 
-    with open(Tver.BATCH_FILE, "w+") as output:
-        pass
+    if links.episodes:
+        with open(Tver.BATCH_FILE, "a+") as output:
+            for episode in links.episodes:
+                print(Messages.PROCESS_EPISODE % episode)
+                
+                output.write(f"{episode}\n")
 
-    with make_webdriver() as driver:
-        for link in links:
-            print(Messages.PROCESS_LINK % link)
+    if links.series:
+        with make_webdriver() as driver:
+            for series in links.series:
+                print(Messages.PROCESS_SERIES % series)
 
-            if render_tver(driver, link):
-                scrape_tver(driver)
+                if render_tver(driver, series):
+                    scrape_tver(driver)
 
     download_tver()
 
