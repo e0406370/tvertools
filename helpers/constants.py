@@ -26,7 +26,7 @@ class Tver:
             "name": "家族ゲーム"
         },
     }
-    
+
     @classmethod
     def get_episode_url(cls, episode_id):
         return f"{cls.BASE_URL}/episodes/{episode_id}"
@@ -50,11 +50,28 @@ class ClassNames:
 
 
 class Messages:
+    USAGE = """
+        Description:
+            This script extracts episode links from series currently available on TVer and then downloads the corresponding episodes.
+            
+        Usage: 
+            python tver.py URL [URL...]
+            
+            URL can be one of the following formats:
+            - episode_id => ep12345678
+            - episode_url => https://tver.jp/episodes/ep12345678
+            - series_id => sr12345678
+            - series_url => https://tver.jp/series/sr12345678
+            
+        Repository:
+            https://github.com/e0406370/tverbatch
+    """
+
     WARNING_INVALID_URL_ID = "Warning: Invalid URL/ID skipped - %s"
     ERROR_INVALID_SERIES_ID = "Error: The provided series ID is invalid!"
     ERROR_NOT_AIRING_SERIES = "Error: This series is currently not airing!"
 
-    PROCESS_EPISODE = "\nAdded %s to batch file"
+    PROCESS_EPISODE = "\nAdded %s to batch file."
     PROCESS_SERIES = "\nProcessing %s"
     PROCESS_DOWNLOAD = "\nStarting download..."
 

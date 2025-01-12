@@ -82,7 +82,7 @@ if __name__ == "__main__":
         pass
 
     if len(sys.argv) < 2:
-        print("Usage: python tver.py https://tver.jp/series/abc123 [https://tver.jp/series/cde456 ...]")  # supports single link or multiple links
+        print(Messages.USAGE)
         exit_script()
 
     links = validate_links(sys.argv[1:])
