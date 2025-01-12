@@ -13,6 +13,11 @@ class Locators:
         By.CSS_SELECTOR,
         css_selector_class_starts_with(ClassNames.LOAD_ICON)
     )
+    
+    SERIES_DESCRIPTION = (
+        By.CSS_SELECTOR,
+        css_selector_class_starts_with(ClassNames.SERIES_DESCRIPTION)
+    )
 
     EPISODE_LIST_EMPTY = (
         By.CSS_SELECTOR,

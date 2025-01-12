@@ -26,6 +26,9 @@ class Tver:
             "name": "家族ゲーム"
         },
     }
+    
+    TOTAL_CHAR_1 = "全"
+    TOTAL_CHAR_2 = "件"
 
     @classmethod
     def get_episode_url(cls, episode_id):
@@ -39,7 +42,9 @@ class Tver:
 class ClassNames:
     ERROR_MODAL = "error-modal_message"
     LOAD_ICON = "loading_box"
+
     SERIES_TITLE = "series-main_title"
+    SERIES_DESCRIPTION = "description_container"
 
     EPISODE_LIST_EMPTY = "episode-live-list-column_empty"
     EPISODE_LIST = "episode-live-list-column_episodeList"
