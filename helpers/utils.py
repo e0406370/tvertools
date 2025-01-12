@@ -37,6 +37,12 @@ def css_selector_class_starts_with(class_name):
     return f"[class^='{class_name}']"
 
 
+def reset_batch():
+
+    with open(Tver.BATCH_FILE, "w+"):
+        pass
+
+
 def exit_script():
 
     print(Messages.SCRIPT_EXIT)

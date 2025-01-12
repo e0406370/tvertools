@@ -78,8 +78,7 @@ def download_tver():
 
 if __name__ == "__main__":
 
-    with open(Tver.BATCH_FILE, "w+") as output:
-        pass
+    reset_batch()
 
     if len(sys.argv) < 2:
         print(Messages.USAGE)
