@@ -9,7 +9,7 @@ def test_validate_links_valid_url():
     ]
     expected = links
 
-    assert validate_links(links) == expected, "validate_links should capture all valid links (URL format)"
+    assert validate_links(links).get_all() == expected, "validate_links should capture all valid links (URL format)"
 
 
 def test_validate_links_valid_id():
@@ -20,18 +20,18 @@ def test_validate_links_valid_id():
     ]
     expected = [Tver.get_series_url(link) for link in links]
     
-    assert validate_links(links) == expected, "validate_links should capture all valid links (ID format)"
+    assert validate_links(links).get_all() == expected, "validate_links should capture all valid links (ID format)"
 
 
 def test_validate_links_invalid_url_id(capsys):
   
     links = [
         "https://www.google.com/",
-        "ep12345678",
+        "abc123",
     ]
     expected = []
     
-    assert validate_links(links) == expected, "validate_links should not capture any invalid links (both URL and ID formats)"
+    assert validate_links(links).get_all() == expected, "validate_links should not capture any invalid links (both URL and ID formats)"
 
     output = capsys.readouterr().out
     
@@ -43,11 +43,11 @@ def test_validate_links_mixed(capsys):
   
     links = [
         Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"]),
-        "ep12345678",
+        "abc123",
     ]
     expected = [Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"])]
     
-    assert validate_links(links) == expected, "validate_links should capture valid links but not invalid links"
+    assert validate_links(links).get_all() == expected, "validate_links should capture valid links but not invalid links"
 
     output = capsys.readouterr().out
     

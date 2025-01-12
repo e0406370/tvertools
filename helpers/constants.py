@@ -10,7 +10,7 @@ class Tver:
 
     TEST_SERIES = {
         "valid": {
-            "id": "srtxft431v", 
+            "id": "srtxft431v",
             "name": "名探偵コナン"
         },
         "valid_2": {
@@ -18,11 +18,11 @@ class Tver:
             "name": "ドラえもん"
         },
         "invalid": {
-            "id": "sr12345678", 
+            "id": "sr12345678",
             "name": "invalid"
         },
         "not_airing": {
-            "id": "sre9gy29cj", 
+            "id": "sre9gy29cj",
             "name": "家族ゲーム"
         },
     }
@@ -58,10 +58,10 @@ class Messages:
             python tver.py URL [URL...]
             
             URL can be one of the following formats:
-            - episode_id => ep12345678
             - episode_url => https://tver.jp/episodes/ep12345678
-            - series_id => sr12345678
+            - episode_id => ep12345678 
             - series_url => https://tver.jp/series/sr12345678
+            - series_id => sr12345678
             
         Repository:
             https://github.com/e0406370/tverbatch

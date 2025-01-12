@@ -2,6 +2,9 @@ class Links:
     def __init__(self, episodes, series):
         self.episodes = episodes
         self.series = series
+        
+    def get_all(self):
+        return [*self.episodes, *self.series]
 
 
 class Episode:
