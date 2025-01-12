@@ -68,6 +68,7 @@ class Messages:
     """
 
     WARNING_INVALID_URL_ID = "Warning: Invalid URL/ID skipped - %s"
+    WARNING_NO_VALID_LINKS = "Warning: No valid links were found. Please provide at least one valid episode or series link."
     ERROR_INVALID_SERIES_ID = "Error: The provided series ID is invalid!"
     ERROR_NOT_AIRING_SERIES = "Error: This series is currently not airing!"
 

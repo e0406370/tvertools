@@ -88,6 +88,7 @@ if __name__ == "__main__":
     links = validate_links(sys.argv[1:])
 
     if not links.episodes and not links.series:
+        print(Messages.WARNING_NO_VALID_LINKS)
         exit_script()
 
     if links.episodes:
