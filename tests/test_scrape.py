@@ -48,7 +48,7 @@ def test_scrape_tver_links_saved(setup_tver):
     lines = setup_tver.strip().split("\n")
 
     with open(Tver.BATCH_FILE, "r+") as input:
-        links = input.readlines()
+        links = [link.strip() for link in input]
 
     for i in range(len(links)):
-        assert links[i].strip() in lines[i + 1]
+        assert links[i] in lines[i + 1]
