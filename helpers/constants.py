@@ -26,7 +26,7 @@ class Tver:
             "name": "家族ゲーム"
         },
     }
-    
+
     TOTAL_CHAR_1 = "全"
     TOTAL_CHAR_2 = "件"
 
@@ -74,11 +74,14 @@ class Messages:
 
     WARNING_INVALID_URL_ID = "Warning: Invalid URL/ID skipped - %s"
     WARNING_NO_VALID_LINKS = "Warning: No valid links were found. Please provide at least one valid episode or series link."
+
+    ERROR_INVALID_EPISODE_ID = "Error: The provided episode ID is invalid!"
     ERROR_INVALID_SERIES_ID = "Error: The provided series ID is invalid!"
     ERROR_NOT_AIRING_SERIES = "Error: This series is currently not airing!"
 
-    PROCESS_EPISODE = "\nAdded %s to batch file."
-    PROCESS_SERIES = "\nProcessing %s"
+    PROCESS_EPISODE = "\nProcessing episode %s"
+    PROCESS_EPISODE_COMPLETE = "Added to batch file."
+    PROCESS_SERIES = "\nProcessing series %s"
     PROCESS_DOWNLOAD = "\nStarting download..."
 
     SCRIPT_EXIT = "\nExiting script..."

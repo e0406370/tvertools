@@ -91,11 +91,18 @@ if __name__ == "__main__":
         exit_script()
 
     if links.episodes:
-        with open(Tver.BATCH_FILE, "a+") as output:
+        with make_webdriver() as driver, open(Tver.BATCH_FILE, "a+") as output:
             for episode in links.episodes:
                 print(Messages.PROCESS_EPISODE % episode)
-                
-                output.write(f"{episode}\n")
+
+                driver.get(episode)
+
+                if is_element_visible(driver, Locators.ERROR_MODAL):
+                    print(Messages.ERROR_INVALID_EPISODE_ID)
+
+                else:
+                    output.write(f"{episode}\n")
+                    print(Messages.PROCESS_EPISODE_COMPLETE)
 
     if links.series:
         with make_webdriver() as driver:
