@@ -2,10 +2,10 @@ class Tver:
     BATCH_FILE = "tver.txt"
     BASE_URL = "https://tver.jp"
 
-    VALID_EPISODE_URL = r"https?://(?:www\.)?tver\.jp/episodes/([a-zA-Z0-9]+)"
+    VALID_EPISODE_URL = r"https?://(?:www\.)?tver\.jp/episodes/(ep[a-z0-9]{8})"
     VALID_EPISODE_ID = r"ep[a-z0-9]{8}"
 
-    VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/([a-zA-Z0-9]+)"
+    VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/(sr[a-z0-9]{8})"
     VALID_SERIES_ID = r"sr[a-z0-9]{8}"
 
     TEST_SERIES = {
