@@ -21,9 +21,17 @@ class Tver:
             "id": "sr12345678",
             "name": "invalid"
         },
+        "invalid_2": {
+            "id": "sr23456789",
+            "name": "invalid_2"
+        },
         "not_airing": {
             "id": "sre9gy29cj",
             "name": "家族ゲーム"
+        },
+        "not_airing_2": {
+            "id": "srs8ad9qnl",
+            "name": "名前をなくした女神"
         },
     }
 
