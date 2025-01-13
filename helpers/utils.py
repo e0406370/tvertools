@@ -7,18 +7,23 @@ def validate_links(links):
 
     valid_episodes = []
     valid_series = []
-
+    
+    valid_episode_url = compile_pattern(Tver.VALID_EPISODE_URL)
+    valid_episode_id = compile_pattern(Tver.VALID_EPISODE_ID)
+    valid_series_url = compile_pattern(Tver.VALID_SERIES_URL)
+    valid_series_id = compile_pattern(Tver.VALID_SERIES_ID)
+    
     for link in links:
-        if re.match(Tver.VALID_EPISODE_URL, link):
+        if valid_episode_url.match(link):
             valid_episodes.append(link)
 
-        elif re.match(Tver.VALID_EPISODE_ID, link):
+        elif valid_episode_id.match(link):
             valid_episodes.append(Tver.get_episode_url(link))
 
-        elif re.match(Tver.VALID_SERIES_URL, link):
+        elif valid_series_url.match(link):
             valid_series.append(link)
 
-        elif re.match(Tver.VALID_SERIES_ID, link):
+        elif valid_series_id.match(link):
             valid_series.append(Tver.get_series_url(link))
 
         else:
