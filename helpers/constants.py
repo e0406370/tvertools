@@ -7,6 +7,15 @@ class Tver:
 
     VALID_SERIES_URL = r"https?://(?:www\.)?tver\.jp/series/(sr[a-z0-9]{8})"
     VALID_SERIES_ID = r"sr[a-z0-9]{8}"
+    
+    TEST_EPISODE = {
+        "valid": {
+            "id": "ep85raotxw",
+            "title": "#1149「探偵団と二人の引率者（後編）」",
+            "start": "1月11日(土)放送分",
+            "end": "1月18日(土)17:59 終了予定"
+        }
+    }
 
     TEST_SERIES = {
         "valid": {
