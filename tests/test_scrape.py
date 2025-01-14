@@ -37,10 +37,28 @@ def test_scrape_tver_num_links(shared_driver, setup_tver):
 
     wait_element_visible(shared_driver, Locators.SERIES_DESCRIPTION)
     series_description = shared_driver.find_element(*Locators.SERIES_DESCRIPTION).text
-    
+
     num_links = series_description[series_description.find(Tver.TOTAL_CHAR_1) + 1 : series_description.find(Tver.TOTAL_CHAR_2)]
 
     assert f"[{num_links}]" in lines[0]
+
+
+def test_scrape_tver_episode_title(setup_tver):
+
+    lines = setup_tver.strip().split("\n")
+
+    episode_title = Tver.TEST_EPISODE["valid"]["title"]
+
+    assert f"{episode_title}" in lines[1]
+
+
+def test_scrape_tver_broadcast_date(setup_tver):
+
+    lines = setup_tver.strip().split("\n")
+
+    broadcast_date = Tver.TEST_EPISODE["valid"]["start"]
+
+    assert f"{broadcast_date}" in lines[1]
 
 
 def test_scrape_tver_links_saved(setup_tver):
