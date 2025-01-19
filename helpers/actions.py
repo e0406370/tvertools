@@ -35,3 +35,13 @@ def wait_element_invisible(driver, locator, timeout=10):
 
     wait = WebDriverWait(driver, timeout)
     wait.until(EC.invisibility_of_element_located(locator))
+
+
+def get_element_text(driver, locator):
+    
+    return driver.find_element(*locator).text
+
+
+def get_element_attribute(driver, locator, attribute):
+    
+    return driver.find_element(*locator).get_attribute(attribute)

@@ -38,7 +38,7 @@ def test_scrape_tver_num_links(shared_driver, setup_tver):
     lines = setup_tver.strip().split("\n")
 
     wait_element_visible(shared_driver, Locators.SERIES_DESCRIPTION)
-    series_description = shared_driver.find_element(*Locators.SERIES_DESCRIPTION).text
+    series_description = get_element_text(shared_driver, Locators.SERIES_DESCRIPTION)
 
     num_links = series_description[series_description.find(Tver.TOTAL_CHAR_1) + 1 : series_description.find(Tver.TOTAL_CHAR_2)]
 

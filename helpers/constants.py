@@ -12,9 +12,10 @@ class Tver:
         "valid": {
             "id": "ep85raotxw",
             "title": "#1149「探偵団と二人の引率者（後編）」",
-            "start": "1月11日(土)放送分",
+            "broadcast": "1月11日(土)放送分",
             "end": "1月18日(土)17:59 終了予定"
-        }
+        },
+        "end_regex": r"(\d+)月(\d+)日.*?(\d{2}:\d{2})"
     }
 
     TEST_SERIES = {
@@ -69,6 +70,7 @@ class ClassNames:
     EPISODE_ROW = "episode-row_container"
     EPISODE_ROW_TITLE = "episode-row_title"
     EPISODE_ROW_BROADCAST_DATE = "episode-row_broadcastDateLabel"
+    EPISODE_ROW_END_DATE = "episode-row_endAt"
 
 
 class Messages:
