@@ -14,9 +14,9 @@ class Tver:
             "title": "#1149「探偵団と二人の引率者（後編）」",
             "broadcast": "1月11日(土)放送分",
             "end": "1月18日(土)17:59 終了予定"
-        },
-        "end_regex": r"(\d+)月(\d+)日.*?(\d{2}:\d{2})"
+        }
     }
+    TEST_EPISODE_END_DATETIME_REGEX = r"(\d+)月(\d+)日.*?(\d{2}:\d{2})"
 
     TEST_SERIES = {
         "valid": {

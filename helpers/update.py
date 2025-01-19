@@ -21,12 +21,24 @@ def update_test_episode():
         episode_broadcast_date = get_element_text(driver, Locators.EPISODE_ROW_BROADCAST_DATE)
         episode_end_date = get_element_text(driver, Locators.EPISODE_ROW_END_DATE)
 
-    Tver.TEST_EPISODE["valid"].update(
-        id=episode_id,
-        title=episode_title,
-        broadcast=episode_broadcast_date,
-        end=episode_end_date,
+    with open("helpers/constants.py", "r", encoding="utf-8") as file:
+        contents = file.read()
+        
+    updated_test_episode = re.sub(
+        r'TEST_EPISODE\s*=\s*\{.*?\}',
+        f'''TEST_EPISODE = {{
+        "valid": {{
+            "id": "{episode_id}",
+            "title": "{episode_title}",
+            "broadcast": "{episode_broadcast_date}",
+            "end": "{episode_end_date}"
+        }}''',
+        contents,
+        flags=re.DOTALL
     )
+    
+    with open("helpers/constants.py", "w", encoding="utf-8") as file:
+        file.write(updated_test_episode)
 
 
 # Checks if the current date in JST is after the end date in TEST_EPISODE
@@ -41,7 +53,7 @@ def need_update_test_episode():
 # Format end date in TEST_EPISODE to MM-DDTHH:MM
 def format_test_episode_end_date():
 
-    match = re.search(Tver.TEST_EPISODE["end_regex"], Tver.TEST_EPISODE["valid"]["end"])
+    match = re.search(Tver.TEST_EPISODE_END_DATETIME_REGEX, Tver.TEST_EPISODE["valid"]["end"])
     month = match.group(1).zfill(2)
     day = match.group(2).zfill(2)
     time = match.group(3)
