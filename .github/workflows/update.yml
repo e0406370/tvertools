@@ -3,6 +3,9 @@ name: Update details in TEST_EPISODE
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: "0 10 * * *" # runs every day at 6pm SGT
+
 env:
   GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
   GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
@@ -21,7 +24,7 @@ jobs:
           python-version: "3.9.12"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt 
+        run: pip install -r requirements.txt
 
       - name: Install pytz for update script
         run: pip install pytz -U
@@ -46,7 +49,7 @@ jobs:
             git diff --cached
             git config user.name $GIT_USERNAME
             git config user.email $GIT_EMAIL
-            git commit -m "[auto] Update details in TEST_EPISODE" -m "Job: $GITHUB_JOB, Run ID: $GITHUB_RUN_ID"
+            git commit -m "[auto] Update details in TEST_EPISODE" -m "Triggered by: ${{ github.event_name }}, Job: $GITHUB_JOB, Run ID: $GITHUB_RUN_ID"
           else
             echo "No changes to commit"
           fi
