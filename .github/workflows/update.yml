@@ -19,6 +19,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt 
 
+      - name: Install pytz for update script
+        run: pip install pytz -U
+
       - name: Run the update script
         run: |
           export PYTHONPATH=$GITHUB_WORKSPACE
