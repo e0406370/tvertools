@@ -3,6 +3,10 @@ name: Update details in TEST_EPISODE
 on:
   workflow_dispatch:
 
+env:
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+
 jobs:
   run-update-script:
     runs-on: ubuntu-latest
@@ -38,8 +42,8 @@ jobs:
 
       - name: Commit changed files
         run: |
-          git config user.name $GITHUB_ACTOR
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config user.name $GIT_USERNAME
+          git config user.email $GIT_EMAIL
           git commit -m "[auto] Update details in TEST_EPISODE"
 
       - name: Push code to tver
