@@ -42,9 +42,14 @@ jobs:
 
       - name: Commit changed files
         run: |
-          git config user.name $GIT_USERNAME
-          git config user.email $GIT_EMAIL
-          git commit -m "[auto] Update details in TEST_EPISODE"
+          if ! git diff --cached --quiet; then
+            git diff --cached
+            git config user.name $GIT_USERNAME
+            git config user.email $GIT_EMAIL
+            git commit -m "[auto] Update details in TEST_EPISODE"
+          else
+            echo "No changes to commit"
+          fi
 
-      - name: Push code to tver
+      - name: Push code to tver branch
         run: git push origin tver
