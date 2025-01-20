@@ -33,8 +33,11 @@ jobs:
       - name: Stage changed files
         run: git add .
 
+      - name: Echo staged changes
+        run: git diff --cached
+
       - name: Commit changed files
-        run: git commit -m "[auto] Update details in TEST_EPISODE"
+        run: git -c user.name=$GIT_AUTHOR_USERNAME -c user.email=$GIT_AUTHOR_EMAIL commit -m "[auto] Update details in TEST_EPISODE"
 
       - name: Push code to tver
         run: git push origin tver
