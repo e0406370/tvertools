@@ -23,7 +23,7 @@ def update_test_episode():
 
     with open("helpers/constants.py", "r", encoding="utf-8") as file:
         contents = file.read()
-        
+
     updated_test_episode = re.sub(
         r'TEST_EPISODE\s*=\s*\{.*?\}',
         f'''TEST_EPISODE = {{
@@ -36,7 +36,7 @@ def update_test_episode():
         contents,
         flags=re.DOTALL
     )
-    
+
     with open("helpers/constants.py", "w", encoding="utf-8") as file:
         file.write(updated_test_episode)
 
@@ -46,7 +46,7 @@ def need_update_test_episode():
 
     current_date = f"{datetime.now(pytz.timezone('Japan')):%m-%dT%H:%M}"
     end_date = format_test_episode_end_date()
-    
+
     return current_date > end_date
 
 
@@ -59,3 +59,9 @@ def format_test_episode_end_date():
     time = match.group(3)
 
     return f"{month}-{day}T{time}"
+
+
+if __name__ == "__main__":
+
+    if need_update_test_episode():
+        update_test_episode()

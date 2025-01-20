@@ -1,0 +1,37 @@
+name: Update details in TEST_EPISODE
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-update-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt 
+
+      - name: Run the update script
+        run: |
+          export PYTHONPATH=$GITHUB_WORKSPACE
+          python .github/workflows/update.py
+
+      - name: Check for changes
+        run: git status
+
+      - name: Stage changed files
+        run: git add .
+
+      - name: Commit changed files
+        run: git commit -m "[auto] Update details in TEST_EPISODE"
+
+      - name: Push code to tver
+        run: git push origin tver
