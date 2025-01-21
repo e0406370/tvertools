@@ -7,7 +7,7 @@ from datetime import datetime
 import pytz
 
 
-# Update details in TEST_EPISODE
+# Updates details in TEST_EPISODE
 def update_test_episode():
 
     with make_webdriver() as driver:
@@ -50,7 +50,7 @@ def need_update_test_episode():
     return current_date > end_date
 
 
-# Format end date in TEST_EPISODE to MM-DDTHH:MM
+# Formats end date in TEST_EPISODE to MM-DDTHH:MM
 def format_test_episode_end_date():
 
     match = re.search(Tver.TEST_EPISODE_END_DATETIME_REGEX, Tver.TEST_EPISODE["valid"]["end"])
