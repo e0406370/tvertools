@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "0 10 * * *" # runs every day at 6pm SGT
+    - cron: "0 10 * * *" # attempts to run every day at 6pm SGT
 
 env:
   GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
@@ -40,16 +40,13 @@ jobs:
       - name: Stage changed files
         run: git add .
 
-      - name: Echo staged changes
-        run: git diff --cached
-
       - name: Commit changed files
         run: |
           if ! git diff --cached --quiet; then
             git diff --cached
             git config user.name $GIT_USERNAME
             git config user.email $GIT_EMAIL
-            git commit -m "[auto] Update details in TEST_EPISODE" -m "Triggered by: ${{ github.event_name }}, Job: $GITHUB_JOB, Run ID: $GITHUB_RUN_ID"
+            git commit -m "[auto] Update details in TEST_EPISODE" -m "Triggered by: ${{ github.event_name }}, Job: $GITHUB_JOB, Run ID: $GITHUB_RUN_ID, Run Number: $GITHUB_RUN_NUMBER"
           else
             echo "No changes to commit"
           fi
