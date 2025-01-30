@@ -3,9 +3,6 @@ name: Update details in TEST_EPISODE
 on:
   workflow_dispatch:
 
-  schedule:
-    - cron: "0 10 * * *" # attempts to run every day at 6pm SGT
-
 env:
   GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
   GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
