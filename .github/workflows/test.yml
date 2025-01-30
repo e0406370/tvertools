@@ -23,4 +23,7 @@ jobs:
         run: pip install pytest pytest-cov
 
       - name: Run tests using Pytest
-        run: pytest tests --cov=com --cov-report=term
+        run: coverage run -m pytest -v -s
+
+      - name: Generate report using Coverage
+        run: coverage report -m
