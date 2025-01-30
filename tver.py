@@ -65,6 +65,10 @@ def download_tver(simulate=False):
 
     with open(Tver.BATCH_FILE, "r+") as input:
         links = input.readlines()
+        
+    if not links:
+        print(Messages.WARNING_NO_VALID_LINKS)
+        exit_script()
 
     ydl_opts = {
         "simulate": simulate,
