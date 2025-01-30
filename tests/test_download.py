@@ -12,6 +12,6 @@ def test_download_tver(capsys):
     
     download_tver(simulate=True)
 
-    assert f"[TVer] Extracting URL: {episode_url}" in capsys.readouterr().out, "Expected extracted message"
-    assert "WARNING" not in capsys.readouterr().out, "Expected no warnings"
-    assert "ERROR" not in capsys.readouterr().out, "Expected no errors"
+    assert f"[TVer] Extracting URL: {episode_url}" in capsys.readouterr().out, "download_tver should produce extracted message"
+    assert "WARNING" not in capsys.readouterr().out, "download_tver should not produce any warnings"
+    assert "ERROR" not in capsys.readouterr().out, "download_tver should not produce any errors"
