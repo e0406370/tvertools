@@ -10,7 +10,7 @@ Assuming the CLI is in the **`tverbatch`** directory, install all required depen
 pip install -r requirements.txt
 ```
 
-## Usage
+## **Usage**
 
 Assuming the CLI is in the **`tverbatch`** directory, execute either of the following commands:
 
@@ -26,8 +26,8 @@ python tver.py https://tver.jp/series/sr12345678 [https://tver.jp/series/sr23456
 python tver.py sr12345678 [sr23456789 ...]
 ```
 
-These commands will retrieve episode links from the provided series links and save them into the **`tver.txt`** batch file.
+These commands will retrieve episode links from the provided series links and save them into the **`tver.txt`** file.
 \
 The episodes will then be downloaded to the **`downloads`** folder, with subtitles included where available.
 
-> **Note:** This script also accepts Episode URL (https://tver.jp/episodes/sr12345678) and Episode ID (ep12345678) directly.
+> **Note:** This script also accepts Episode URL (https://tver.jp/episodes/sr12345678) and Episode ID (ep12345678).
