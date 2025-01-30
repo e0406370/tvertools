@@ -6,28 +6,24 @@ This command-line tool retrieves episode links from one or more series currently
 
 Assuming the CLI is in the **`tverbatch`** directory, install all required dependencies by running:
 
-```sh
+```**sh**
 pip install -r requirements.txt
 ```
 
 ## **Usage**
 
-Assuming the CLI is in the **`tverbatch`** directory, execute either of the following commands:
-
-##### Using Series URL
+Assuming the CLI is in the **`tverbatch`** directory, execute the following command:
 
 ```sh
-python tver.py https://tver.jp/series/sr12345678 [https://tver.jp/series/sr23456789 ...]
+python tver.py URL [URL...]
 ```
-
-##### Using Series ID
 
 ```sh
-python tver.py sr12345678 [sr23456789 ...]
+URL can be one of the following formats:
+    - episode_url => https://tver.jp/episodes/ep12345678
+    - episode_id => ep12345678
+    - series_url => https://tver.jp/series/sr12345678
+    - series_id => sr12345678
 ```
 
-These commands will retrieve episode links from the provided series links and save them into the **`tver.txt`** file.
-\
 The episodes will then be downloaded to the **`downloads`** folder, with subtitles included where available.
-
-> **Note:** This script also accepts Episode URL (https://tver.jp/episodes/sr12345678) and Episode ID (ep12345678).
