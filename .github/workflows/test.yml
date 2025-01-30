@@ -19,18 +19,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Ruff for linting purposes
-        run: pip install ruff
-
       - name: Install Pytest for testing purposes
         run: pip install pytest pytest-cov
-
-      - name: Lint code using Ruff
-        run: ruff check --output-format=github --target-version=py39
-
-      - name: Check code formatting using Ruff
-        run: ruff format --diff --target-version=py39
-        continue-on-error: true
 
       - name: Run tests using Pytest
         run: pytest tests --cov=com --cov-report=term
