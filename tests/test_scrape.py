@@ -1,6 +1,7 @@
-import pytest
-from helpers import *
+from helpers import make_webdriver, reset_batch, wait_element_visible, get_element_text
+from helpers import Tver, Locators
 from tver import render_tver, scrape_tver
+import pytest
 
 
 @pytest.fixture(scope="session")
@@ -22,7 +23,7 @@ def setup_tver(shared_driver, capsys):
     return capsys.readouterr().out
 
 
-# scrape_tver -> Check series title in output
+# [scrape_tver] Verify series title is displayed in output
 def test_scrape_tver_series_title(setup_tver):
 
     lines = setup_tver.strip().split("\n")
@@ -32,7 +33,7 @@ def test_scrape_tver_series_title(setup_tver):
     assert f"{series_name}" in lines[0], "scrape_tver should capture the series title"
 
 
-# scrape_tver -> Check no. of episode links in output
+# [scrape_tver] Verify no. of episode links is displayed in output
 def test_scrape_tver_num_links(shared_driver, setup_tver):
 
     lines = setup_tver.strip().split("\n")
@@ -45,7 +46,7 @@ def test_scrape_tver_num_links(shared_driver, setup_tver):
     assert f"[{num_links}]" in lines[0], "scrape_tver should capture the no. of episode links"
 
 
-# scrape_tver -> Check episode title in output
+# [scrape_tver] Verify episode title is displayed in output
 def test_scrape_tver_episode_title(setup_tver):
 
     lines = setup_tver.strip().split("\n")
@@ -55,17 +56,17 @@ def test_scrape_tver_episode_title(setup_tver):
     assert f"{episode_title}" in lines[1], "scrape_tver should capture the episode title"
 
 
-# scrape_tver -> Check broadcast date in output
+# [scrape_tver] Verify broadcast date is displayed in output
 def test_scrape_tver_broadcast_date(setup_tver):
 
     lines = setup_tver.strip().split("\n")
 
-    broadcast_date = Tver.TEST_EPISODE["valid"]["start"]
+    broadcast_date = Tver.TEST_EPISODE["valid"]["broadcast"]
 
     assert f"{broadcast_date}" in lines[1], "scrape_tver should capture the broadcast date"
 
 
-# scrape_tver -> Check links are saved into batch file
+# [scrape_tver] Verify episode links are saved into the batch file
 def test_scrape_tver_links_saved(setup_tver):
 
     lines = setup_tver.strip().split("\n")

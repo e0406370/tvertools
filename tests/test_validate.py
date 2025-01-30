@@ -1,7 +1,8 @@
-from helpers import *
+from helpers import Tver, Messages
+from helpers import validate_links
 
 
-# validate_links -> Episodes - Valid url
+# [validate_links][episodes] Valid links in URL format
 def test_validate_links_episodes_valid_url():
 
     links = [
@@ -12,7 +13,7 @@ def test_validate_links_episodes_valid_url():
     assert validate_links(links).get_all() == expected, "[episodes] validate_links should capture all valid links (URL format)"
 
 
-# validate_links -> Episodes - Valid id
+# [validate_links][episodes] Valid links in ID format
 def test_validate_links_episodes_valid_id():
 
     links = [
@@ -23,7 +24,7 @@ def test_validate_links_episodes_valid_id():
     assert validate_links(links).get_all() == expected, "[episodes] validate_links should capture all valid links (ID format)"
 
 
-# validate_links -> Episodes - Mix of valid and invalid links
+# [validate_links][episodes] Mix of valid and invalid links
 def test_validate_links_episodes_valid_invalid(capsys):
 
     links = [
@@ -40,7 +41,7 @@ def test_validate_links_episodes_valid_invalid(capsys):
         assert Messages.WARNING_INVALID_URL_ID % link in output, "[episodes] Expected warning message for invalid link"
 
 
-# validate_links -> Series - Valid url
+# [validate_links][series] Valid links in URL format
 def test_validate_links_series_valid_url():
 
     links = [
@@ -52,7 +53,7 @@ def test_validate_links_series_valid_url():
     assert validate_links(links).get_all() == expected, "[series] validate_links should capture all valid links (URL format)"
 
 
-# validate_links -> Series - Valid id
+# [validate_links][series] Valid links in ID format
 def test_validate_links_series_valid_id():
 
     links = [
@@ -64,7 +65,7 @@ def test_validate_links_series_valid_id():
     assert validate_links(links).get_all() == expected, "[series] validate_links should capture all valid links (ID format)"
 
 
-# validate_links -> Series - Mix of valid and invalid links
+# [validate_links][series] Mix of valid and invalid links
 def test_validate_links_series_valid_invalid(capsys):
 
     links = [
@@ -81,7 +82,7 @@ def test_validate_links_series_valid_invalid(capsys):
         assert Messages.WARNING_INVALID_URL_ID % link in output, "[series] Expected warning message for invalid link"
 
 
-# validate_links -> Episodes, Series - Valid url
+# [validate_links][mixed] Valid links in URL format
 def test_validate_links_mixed_valid_url():
 
     links = [
@@ -93,7 +94,7 @@ def test_validate_links_mixed_valid_url():
     assert validate_links(links).get_all() == expected, "[mixed] validate_links should capture all valid links (URL format)"
 
 
-# validate_links -> Episodes, Series - Valid id
+# [validate_links][mixed] Valid links in ID format
 def test_validate_links_mixed_valid_id():
 
     links = [
@@ -105,7 +106,7 @@ def test_validate_links_mixed_valid_id():
     assert validate_links(links).get_all() == expected, "[mixed] validate_links should capture all valid links (ID format)"   
 
 
-# validate_links -> Episodes, Series - Mix of valid and invalid links
+# [validate_links][mixed] Mix of valid and invalid links
 def test_validate_links_mixed_valid_invalid(capsys):
 
     episodes = [
@@ -139,7 +140,7 @@ def test_validate_links_mixed_valid_invalid(capsys):
         assert Messages.WARNING_INVALID_URL_ID % link in output, "[mixed] Expected warning message for invalid link"
 
 
-# validate_links -> Only invalid links
+# [validate_links] Only invalid links
 def test_validate_links_invalid_only(capsys):
 
     links = [
