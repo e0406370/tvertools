@@ -75,20 +75,20 @@ class ClassNames:
 
 class Messages:
     USAGE = """
-        Description:
-            This script extracts episode links from series currently available on TVer and then downloads the corresponding episodes.
-            
-        Usage: 
-            python tver.py URL [URL...]
-            
-            URL can be one of the following formats:
-            - episode_url => https://tver.jp/episodes/ep12345678
-            - episode_id => ep12345678 
-            - series_url => https://tver.jp/series/sr12345678
-            - series_id => sr12345678
-            
-        Repository:
-            https://github.com/e0406370/tverbatch
+    Description:
+        This script extracts episode links from series currently streaming on TVer and then downloads the corresponding episodes.
+        
+    Usage: 
+        python tver.py URL [URL...]
+        
+        URL can be one of the following formats:
+        - episode_url => https://tver.jp/episodes/ep12345678
+        - episode_id => ep12345678 
+        - series_url => https://tver.jp/series/sr12345678
+        - series_id => sr12345678
+        
+    Repository:
+        https://github.com/e0406370/tverbatch
     """
 
     WARNING_INVALID_URL_ID = "Warning: Invalid URL/ID skipped - %s"
