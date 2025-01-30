@@ -1,6 +1,8 @@
 name: Update details in TEST_EPISODE
 
 on:
+  workflow_call:
+
   workflow_dispatch:
 
 env:
