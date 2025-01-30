@@ -6,7 +6,7 @@ This command-line tool retrieves episode links from one or more series currently
 
 Assuming the CLI is in the **`tverbatch`** directory, install all required dependencies by running:
 
-```**sh**
+```sh
 pip install -r requirements.txt
 ```
 
