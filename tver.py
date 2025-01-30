@@ -61,12 +61,13 @@ def scrape_tver(driver):
             output.write(f"{epi.episode_link}\n")
 
 
-def download_tver():
+def download_tver(simulate=False):
 
     with open(Tver.BATCH_FILE, "r+") as input:
         links = input.readlines()
 
     ydl_opts = {
+        "simulate": simulate,
         "writesubtitles": True,
         "outtmpl": "downloads/%(title)s.%(ext)s",
     }
