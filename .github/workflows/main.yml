@@ -1,10 +1,10 @@
-name: Sequential workflow (1. update details, 2. run tests)
+name: Sequential (1. update, 2. tests)
 
 on:
   workflow_dispatch:
 
   schedule:
-  - cron: "0 10 * * *" # attempts to run every day at 6pm SGT
+  - cron: "0 10 * * 6" # attempts to run every Saturday at 6pm SGT
 
 jobs:
   run-update-script:
