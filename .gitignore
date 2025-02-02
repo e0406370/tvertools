@@ -1,5 +1,8 @@
 __pycache__
 .pytest_cache
 
+*.json
+*.mp4
+
 tver.txt
 /downloads
