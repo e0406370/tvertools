@@ -27,7 +27,7 @@ jobs:
       - name: Run tests using Pytest
         uses: nick-fields/retry@v3
         with:
-          timeout_seconds: 15
+          timeout_minutes: 15
           max_attempts: 3
           retry_on: error
           command: coverage run -m pytest -v -s
