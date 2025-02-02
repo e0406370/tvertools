@@ -10,10 +10,10 @@ class Tver:
     
     TEST_EPISODE = {
         "valid": {
-            "id": "ep5g3du8b4",
-            "title": "R150「星付きレストランの謎（デジタルリマスター）」",
-            "broadcast": "2月1日(土)放送分",
-            "end": "2月8日(土)17:59 終了予定"
+            "id": "epziu17xe8",
+            "title": "#1151「怪盗キッドと王冠マジック（後編）」",
+            "broadcast": "1月25日(土)放送分",
+            "end": "2月1日(土)17:59 終了予定"
         }
     }
     TEST_EPISODE_END_DATETIME_REGEX = r"(\d+)月(\d+)日.*?(\d{2}:\d{2})"
