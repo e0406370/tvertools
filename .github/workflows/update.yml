@@ -45,7 +45,7 @@ jobs:
             git diff --cached
             git config user.name $GIT_USERNAME
             git config user.email $GIT_EMAIL
-            git commit -m "[auto] Update details in TEST_EPISODE" -m "Triggered by: ${{ github.event_name }}, Job: ${{ github.job }}, Run ID: ${{ github.run_id }}, Run Number: ${{ github.run_number }}"
+            git commit -m "[auto] Update details in TEST_EPISODE" -m "Workflow: ${{ github.workflow }}, Triggered on: ${{ github.event_name }}, Run ID: ${{ github.run_id }}, Run Number: ${{ github.run_number }}"
           else
             echo "No changes to commit"
           fi
