@@ -7,10 +7,11 @@ on:
   - cron: "0 10 * * 6" # attempts to run every Saturday at 6pm SGT
 
 jobs:
-  run-update-script:
+  _run-update-script:
     name: Update details in TEST_EPISODE
     uses: ./.github/workflows/update.yml
+    secrets: inherit
 
-  run-tests-pytest:
+  _run-tests-pytest:
     name: Run tests using Pytest
     uses: ./.github/workflows/test.yml
