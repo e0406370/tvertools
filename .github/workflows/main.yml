@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   schedule:
-  - cron: "0 10 * * 6" # attempts to run every Saturday at 6pm SGT
+    - cron: "0 10 * * 6" # attempts to run every Saturday at 6pm SGT
 
 jobs:
   _run-update-script:
@@ -15,3 +15,4 @@ jobs:
   _run-tests-pytest:
     name: Run tests using Pytest
     uses: ./.github/workflows/test.yml
+    needs: _run-update-script
