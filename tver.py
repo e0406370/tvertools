@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 import yt_dlp
 
 
-def render_tver(driver, link):
+def render_tver_series(driver, link):
 
     driver.get(link)
 
@@ -114,7 +114,7 @@ if __name__ == "__main__":
             for series in links.series:
                 print(Messages.PROCESS_SERIES % series)
 
-                if render_tver(driver, series):
+                if render_tver_series(driver, series):
                     scrape_tver(driver)
 
     download_tver()
