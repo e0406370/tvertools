@@ -14,6 +14,9 @@ class Tver:
             "title": "#1152「ラストダンス」",
             "broadcast": "2月8日(土)放送分",
             "end": "2月15日(土)17:59 終了予定"
+        },
+        "invalid": {
+            "id": "ep12345678"
         }
     }
     TEST_EPISODE_END_DATETIME_REGEX = r"(\d+)月(\d+)日.*?(\d{2}:\d{2})"
