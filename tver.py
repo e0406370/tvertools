@@ -8,9 +8,20 @@ from bs4 import BeautifulSoup
 import yt_dlp
 
 
-def render_tver_series(driver, link):
+def render_tver_episode(driver, episode):
+    
+    driver.get(episode)
 
-    driver.get(link)
+    if is_element_visible(driver, Locators.ERROR_MODAL):
+        print(Messages.ERROR_INVALID_EPISODE_ID)
+        return False
+
+    return True
+
+
+def render_tver_series(driver, series):
+
+    driver.get(series)
 
     if is_element_visible(driver, Locators.ERROR_MODAL):
         print(Messages.ERROR_INVALID_SERIES_ID)
@@ -99,13 +110,8 @@ if __name__ == "__main__":
         with make_webdriver() as driver, open(Tver.BATCH_FILE, "a+") as output:
             for episode in links.episodes:
                 print(Messages.PROCESS_EPISODE % episode)
-
-                driver.get(episode)
-
-                if is_element_visible(driver, Locators.ERROR_MODAL):
-                    print(Messages.ERROR_INVALID_EPISODE_ID)
-
-                else:
+                
+                if render_tver_episode(driver, episode):
                     output.write(f"{episode}\n")
                     print(Messages.PROCESS_EPISODE_COMPLETE)
 
