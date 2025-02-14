@@ -1,6 +1,9 @@
 from helpers import Tver, Messages
 from helpers import validate_links
 
+INVALID_ID = "abc123"
+INVALID_URL = "https://www.google.com/"
+
 
 # [validate_links][episodes] Valid links in URL format
 def test_validate_links_episodes_valid_url():
@@ -29,7 +32,7 @@ def test_validate_links_episodes_valid_invalid(capsys):
 
     links = [
         Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"]),
-        "abc123",
+        INVALID_ID,
     ]
     expected = [Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"])]
 
@@ -70,7 +73,7 @@ def test_validate_links_series_valid_invalid(capsys):
 
     links = [
         Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"]),
-        "abc123",
+        INVALID_ID,
     ]
     expected = [Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"])]
 
@@ -118,8 +121,8 @@ def test_validate_links_mixed_valid_invalid(capsys):
         Tver.TEST_SERIES["valid"]["id"],
     ]
     invalid = [
-        "https://www.google.com/",
-        "abc123",
+        INVALID_URL,
+        INVALID_ID,
     ]
 
     links = [
@@ -144,8 +147,8 @@ def test_validate_links_mixed_valid_invalid(capsys):
 def test_validate_links_invalid_only(capsys):
 
     links = [
-        "https://www.google.com/",
-        "abc123",
+        INVALID_URL,
+        INVALID_ID,
     ]
     expected = []
 
