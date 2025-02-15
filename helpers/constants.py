@@ -10,10 +10,10 @@ class Tver:
     
     TEST_EPISODE = {
         "valid": {
-            "id": "epwc2e0olo",
-            "title": "#1152「ラストダンス」",
-            "broadcast": "2月8日(土)放送分",
-            "end": "2月15日(土)17:59 終了予定"
+            "id": "ep4z0uumnm",
+            "title": "#1153「屋久島の山姫（前編）」",
+            "broadcast": "2月15日(土)放送分",
+            "end": "2月22日(土)17:59 終了予定"
         },
         "invalid": {
             "id": "ep12345678"
