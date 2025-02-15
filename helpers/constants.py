@@ -52,11 +52,11 @@ class Tver:
     TOTAL_CHAR_2 = "件"
 
     @classmethod
-    def get_episode_url(cls, episode_id):
+    def get_episode_url(cls, episode_id: str) -> str:
         return f"{cls.BASE_URL}/episodes/{episode_id}"
 
     @classmethod
-    def get_series_url(cls, series_id):
+    def get_series_url(cls, series_id: str) -> str:
         return f"{cls.BASE_URL}/series/{series_id}"
 
 
