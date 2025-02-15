@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 import yt_dlp
 
 
-def render_tver_episode(driver, episode):
+def render_tver_episode(driver: WebDriver, episode: str) -> bool:
     
     driver.get(episode)
 
@@ -19,7 +19,7 @@ def render_tver_episode(driver, episode):
     return True
 
 
-def render_tver_series(driver, series):
+def render_tver_series(driver: WebDriver, series: str) -> bool:
 
     driver.get(series)
 
@@ -38,7 +38,7 @@ def render_tver_series(driver, series):
     return True
 
 
-def scrape_tver(driver):
+def scrape_tver(driver: WebDriver) -> None:
 
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
@@ -72,7 +72,7 @@ def scrape_tver(driver):
             output.write(f"{epi.episode_link}\n")
 
 
-def download_tver(simulate=False):
+def download_tver(simulate=False) -> None:
 
     with open(Tver.BATCH_FILE, "r+") as input:
         links = input.readlines()
