@@ -1,6 +1,14 @@
 from helpers import Tver, Messages
 from helpers import validate_links
 
+VALID_EPISODE_ID = Tver.TEST_EPISODE["valid"]["id"]
+VALID_EPISODE_URL = Tver.get_episode_url(VALID_EPISODE_ID)
+
+VALID_SERIES_ID_1 = Tver.TEST_SERIES["valid"]["id"]
+VALID_SERIES_ID_2 = Tver.TEST_SERIES["valid_2"]["id"]
+VALID_SERIES_URL_1 = Tver.get_series_url(VALID_SERIES_ID_1)
+VALID_SERIES_URL_2 = Tver.get_series_url(VALID_SERIES_ID_2)
+
 INVALID_ID = "abc123"
 INVALID_URL = "https://www.google.com/"
 
@@ -9,7 +17,7 @@ INVALID_URL = "https://www.google.com/"
 def test_validate_links_episodes_valid_url():
 
     links = [
-        Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"])
+        VALID_EPISODE_URL
     ]
     expected = links
 
@@ -20,7 +28,7 @@ def test_validate_links_episodes_valid_url():
 def test_validate_links_episodes_valid_id():
 
     links = [
-        Tver.TEST_EPISODE["valid"]["id"]
+        VALID_EPISODE_ID
     ]
     expected = [Tver.get_episode_url(link) for link in links]
 
@@ -31,10 +39,10 @@ def test_validate_links_episodes_valid_id():
 def test_validate_links_episodes_valid_invalid(capsys):
 
     links = [
-        Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"]),
+        VALID_EPISODE_URL,
         INVALID_ID,
     ]
-    expected = [Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"])]
+    expected = [VALID_EPISODE_URL]
 
     assert validate_links(links).get_all() == expected, "[episodes] validate_links should capture valid links but not invalid links"
 
@@ -48,8 +56,8 @@ def test_validate_links_episodes_valid_invalid(capsys):
 def test_validate_links_series_valid_url():
 
     links = [
-        Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"]),
-        Tver.get_series_url(Tver.TEST_SERIES["valid_2"]["id"]),
+        VALID_SERIES_URL_1,
+        VALID_SERIES_URL_2,
     ]
     expected = links
 
@@ -60,8 +68,8 @@ def test_validate_links_series_valid_url():
 def test_validate_links_series_valid_id():
 
     links = [
-        Tver.TEST_SERIES["valid"]["id"], 
-        Tver.TEST_SERIES["valid_2"]["id"]
+        VALID_SERIES_ID_1, 
+        VALID_SERIES_ID_2
     ]
     expected = [Tver.get_series_url(link) for link in links]
 
@@ -72,10 +80,10 @@ def test_validate_links_series_valid_id():
 def test_validate_links_series_valid_invalid(capsys):
 
     links = [
-        Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"]),
+        VALID_SERIES_URL_1,
         INVALID_ID,
     ]
-    expected = [Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"])]
+    expected = [VALID_SERIES_URL_1]
 
     assert validate_links(links).get_all() == expected, "[series] validate_links should capture valid links but not invalid links"
 
@@ -89,8 +97,8 @@ def test_validate_links_series_valid_invalid(capsys):
 def test_validate_links_mixed_valid_url():
 
     links = [
-        Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"]),
-        Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"]),
+        VALID_EPISODE_URL,
+        VALID_SERIES_URL_1,
     ]
     expected = links
 
@@ -101,8 +109,8 @@ def test_validate_links_mixed_valid_url():
 def test_validate_links_mixed_valid_id():
 
     links = [
-        Tver.TEST_EPISODE["valid"]["id"],
-        Tver.TEST_SERIES["valid"]["id"],
+        VALID_EPISODE_ID,
+        VALID_SERIES_ID_1,
     ]
     expected = [Tver.get_episode_url(links[0]), Tver.get_series_url(links[1])]
 
@@ -113,12 +121,12 @@ def test_validate_links_mixed_valid_id():
 def test_validate_links_mixed_valid_invalid(capsys):
 
     episodes = [
-        Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"]),
-        Tver.TEST_EPISODE["valid"]["id"],
+        VALID_EPISODE_URL,
+        VALID_EPISODE_ID,
     ]
     series = [
-        Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"]),
-        Tver.TEST_SERIES["valid"]["id"],
+        VALID_SERIES_URL_1,
+        VALID_SERIES_ID_1,
     ]
     invalid = [
         INVALID_URL,
@@ -131,8 +139,8 @@ def test_validate_links_mixed_valid_invalid(capsys):
         *invalid
     ]
     expected = [
-        *[Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"]), Tver.get_episode_url(Tver.TEST_EPISODE["valid"]["id"])],
-        *[Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"]), Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"])]
+        *[VALID_EPISODE_URL, VALID_EPISODE_URL],
+        *[VALID_SERIES_URL_1, VALID_SERIES_URL_1]
     ]
 
     assert validate_links(links).get_all() == expected, "[mixed] validate_links should capture valid links but not invalid links"
