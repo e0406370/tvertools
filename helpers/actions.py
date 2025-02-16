@@ -7,43 +7,79 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def make_webdriver() -> WebDriver:
+class Driver:
 
-    opt = Options()
-    opt.add_argument("--headless")  # activates the browser in the background
-    opt.add_argument("--log-level=2")  # suppresses TensorFlow-related messages
+    _instance = None
 
-    driver = webdriver.Chrome(options=opt)
-    return driver
+    def __init__(self):
 
-
-def is_element_visible(driver: WebDriver, locator: Locator, timeout: float = 2) -> bool:
-
-    try:
-        wait_element_visible(driver, locator, timeout)
-        return True
-
-    except TimeoutException:
-        return False
+        self._instance = None
 
 
-def wait_element_visible(driver: WebDriver, locator: Locator, timeout: float = 10) -> None:
+    def __enter__(self):
 
-    wait = WebDriverWait(driver, timeout)
-    wait.until(EC.visibility_of_element_located(locator))
-
-
-def wait_element_invisible(driver: WebDriver, locator: Locator, timeout: float = 10) -> None:
-
-    wait = WebDriverWait(driver, timeout)
-    wait.until(EC.invisibility_of_element_located(locator))
+        return self.get_instance()
 
 
-def get_element_text(driver: WebDriver, locator: Locator) -> str:
+    def __exit__(self, exc_type, exc_val, exc_tb):
 
-    return driver.find_element(*locator).text
+        if self._instance:
+            self._instance.quit()
+            Driver._instance = None
 
 
-def get_element_attribute(driver: WebDriver, locator: Locator, attribute: str) -> str:
+    @classmethod
+    def get_instance(cls) -> WebDriver:
 
-    return driver.find_element(*locator).get_attribute(attribute)
+        if cls._instance is None:
+            cls._instance = cls.make_webdriver()
+
+        return cls._instance
+
+
+    @classmethod
+    def make_webdriver(cls) -> WebDriver:
+
+        opt = Options()
+        # opt.add_argument("--headless")  # activates the browser in the background
+        opt.add_argument("--log-level=2")  # suppresses TensorFlow-related messages
+
+        driver = webdriver.Chrome(options=opt)
+        return driver
+
+
+    @classmethod
+    def is_element_visible(cls, locator: Locator, timeout: float = 2) -> bool:
+
+        try:
+            cls.wait_element_visible(locator, timeout)
+            return True
+
+        except TimeoutException:
+            return False
+
+
+    @classmethod
+    def wait_element_visible(cls, locator: Locator, timeout: float = 10) -> None:
+
+        wait = WebDriverWait(cls._instance, timeout)
+        wait.until(EC.visibility_of_element_located(locator))
+
+
+    @classmethod
+    def wait_element_invisible(cls, locator: Locator, timeout: float = 10) -> None:
+
+        wait = WebDriverWait(cls._instance, timeout)
+        wait.until(EC.invisibility_of_element_located(locator))
+
+
+    @classmethod
+    def get_element_text(cls, locator: Locator) -> str:
+
+        return cls._instance.find_element(*locator).text
+
+
+    @classmethod
+    def get_element_attribute(cls, locator: Locator, attribute: str) -> str:
+
+        return cls._instance.find_element(*locator).get_attribute(attribute)

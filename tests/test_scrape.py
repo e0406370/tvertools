@@ -1,24 +1,24 @@
-from helpers import make_webdriver, reset_batch, wait_element_visible, get_element_text
-from helpers import Tver, Locators
+from helpers import Driver, Tver, Locators
+from helpers import reset_batch
 from tver import render_tver_series, scrape_tver
 import pytest
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="session", autouse=True)
 def shared_driver():
 
-    with make_webdriver() as driver:
-        yield driver
+    with Driver():
+        pass
 
 
 @pytest.fixture
-def setup_tver(shared_driver, capsys):
+def setup_tver(capsys):
 
     series_url = Tver.get_series_url(Tver.TEST_SERIES["valid"]["id"])
 
     reset_batch()
-    render_tver_series(shared_driver, series_url)
-    scrape_tver(shared_driver)
+    render_tver_series(series_url)
+    scrape_tver()
 
     return capsys.readouterr().out
 
@@ -34,12 +34,12 @@ def test_scrape_tver_series_title(setup_tver):
 
 
 # [scrape_tver] Verify no. of episode links is displayed in output
-def test_scrape_tver_num_links(shared_driver, setup_tver):
+def test_scrape_tver_num_links(setup_tver):
 
     lines = setup_tver.strip().split("\n")
 
-    wait_element_visible(shared_driver, Locators.SERIES_DESCRIPTION)
-    series_description = get_element_text(shared_driver, Locators.SERIES_DESCRIPTION)
+    Driver.wait_element_visible(Locators.SERIES_DESCRIPTION)
+    series_description = Driver.get_element_text(Locators.SERIES_DESCRIPTION)
 
     num_links = series_description[series_description.find(Tver.TOTAL_CHAR_1) + 1 : series_description.find(Tver.TOTAL_CHAR_2)]
 

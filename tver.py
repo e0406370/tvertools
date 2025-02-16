@@ -8,39 +8,39 @@ from bs4 import BeautifulSoup
 import yt_dlp
 
 
-def render_tver_episode(driver: WebDriver, episode: str) -> bool:
-    
-    driver.get(episode)
+def render_tver_episode(episode: str) -> bool:
 
-    if is_element_visible(driver, Locators.ERROR_MODAL):
+    Driver.get_instance().get(episode)
+
+    if Driver.is_element_visible(Locators.ERROR_MODAL):
         print(Messages.ERROR_INVALID_EPISODE_ID)
         return False
 
     return True
 
 
-def render_tver_series(driver: WebDriver, series: str) -> bool:
+def render_tver_series(series: str) -> bool:
 
-    driver.get(series)
+    Driver.get_instance().get(series)
 
-    if is_element_visible(driver, Locators.ERROR_MODAL):
+    if Driver.is_element_visible(Locators.ERROR_MODAL):
         print(Messages.ERROR_INVALID_SERIES_ID)
         return False
 
-    wait_element_invisible(driver, Locators.LOAD_ICON)
+    Driver.wait_element_invisible(Locators.LOAD_ICON)
 
-    if is_element_visible(driver, Locators.EPISODE_LIST_EMPTY):
+    if Driver.is_element_visible(Locators.EPISODE_LIST_EMPTY):
         print(Messages.ERROR_NOT_AIRING_SERIES)
         return False
 
-    wait_element_visible(driver, Locators.EPISODE_LIST)
+    Driver.wait_element_visible(Locators.EPISODE_LIST)
 
     return True
 
 
-def scrape_tver(driver: WebDriver) -> None:
+def scrape_tver() -> None:
 
-    html = driver.page_source
+    html = Driver.get_instance().page_source
     soup = BeautifulSoup(html, "html.parser")
 
     series_title = soup.select_one(css_selector_class_starts_with(ClassNames.SERIES_TITLE)).get_text()
@@ -107,21 +107,21 @@ if __name__ == "__main__":
         exit_script()
 
     if links.episodes:
-        with make_webdriver() as driver, open(Tver.BATCH_FILE, "a+") as output:
+        with Driver(), open(Tver.BATCH_FILE, "a+") as output:
             for episode in links.episodes:
                 print(Messages.PROCESS_EPISODE % episode)
                 
-                if render_tver_episode(driver, episode):
+                if render_tver_episode(episode):
                     output.write(f"{episode}\n")
                     print(Messages.PROCESS_EPISODE_COMPLETE)
 
     if links.series:
-        with make_webdriver() as driver:
+        with Driver():
             for series in links.series:
                 print(Messages.PROCESS_SERIES % series)
 
-                if render_tver_series(driver, series):
-                    scrape_tver(driver)
+                if render_tver_series(series):
+                    scrape_tver()
 
     download_tver()
 
